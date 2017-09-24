@@ -1,4 +1,4 @@
-var request = require('request');
+var tr = require('tor-request');
 
 // node bot.js baseDomain pollId choiceId
 // node bot.js example.com 1234 1
@@ -13,6 +13,15 @@ var request = require('request');
   this bot as it only created for educational purposes.
 */
 
+/*
+  This project is an adaptation on the previous bot that was created. This
+  bot utilizes tor-request in order to randomize the IP of the vote. This
+  bot therefore bypasses the TotalPoll option to block duplicate votes
+  from the same IP. This bot, however, operates at a slower pace than the
+  other one and cannot have multiple instances ran simultaneously. This bot
+  has been created for educational purposes only and I take no responsibility
+  for nerfarious usage of this bot. -Dlee99 (Dwlee99)
+*/
 var args = process.argv.splice(process.execArgv.length + 2);
 
 // This is the domain of the WordPress site (without a trailing slash).
@@ -47,15 +56,10 @@ function sendVote() {
   };
 
   // This function will handle the server's response when we get it.
-  request(options, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      // Looks like our vote was successfull; let's send another.
-      sendVote();
-    } else {
-      console.log(error);
-    }
+  tr.request(options, function (err, res, body) {
+    if (!err && res.statusCode == 200) {
+      //Make sure the vote goes through
   })
 }
-
-// Time to begin that sweet, sweet, recursion.
-sendVote();
+             
+sendVote(); //Send a vote
