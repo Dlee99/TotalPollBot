@@ -1,7 +1,7 @@
 var tr = require('tor-request');
 
-// node bot.js baseDomain pollId choiceId
-// node bot.js example.com 1234 1
+//Edit the batch file to have the proper
+//baseDomain, pollId and choiceId
 
 /*
   Welcome to my TotalPoll bot.  This project is not intended to be used with
