@@ -1,6 +1,5 @@
 :loop
-cd Tor
-start tor.exe
+start Tor\tor.exe
 timeout /t 5
 cd ..
 node bot.js baseDomain pollId choiceId
